@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社すうぃーと</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF8F0;
+    --warm-white: #FFFDF7;
+    --mint: #B8E8D4;
+    --peach: #FFD5B8;
+    --sky: #C5E8F5;
+    --lavender: #DDD0F5;
+    --yellow: #FFF0A0;
+    --coral: #FF8C7A;
+    --forest: #5A9E7C;
+    --navy: #2D4A6E;
+    --brown: #8B6340;
+    --ink: #2A2018;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* === STARS BACKGROUND === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, #FFD700 1px, transparent 1px),
+      radial-gradient(circle, #FFB6C1 1.5px, transparent 1.5px),
+      radial-gradient(circle, #87CEEB 1px, transparent 1px);
+    background-size: 120px 120px, 180px 180px, 90px 90px;
+    background-position: 10px 10px, 60px 40px, 30px 80px;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* === HEADER === */
+  header {
+    background: linear-gradient(135deg, #2D4A6E 0%, #3D6B9E 40%, #5B8EC4 100%);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  /* Moon */
+  header::after {
+    content: '🌙';
+    position: absolute;
+    top: 20px; right: 80px;
+    font-size: 3rem;
+    opacity: 0.6;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 40px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-icon {
+    width: 64px; height: 64px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .logo-text {
+    color: #fff;
+  }
+  .logo-text .company-sub {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+    font-weight: 400;
+  }
+  .logo-text .company-name {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+  .logo-text .company-catch {
+    font-size: 0.72rem;
+    color: var(--yellow);
+    opacity: 0.95;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+  }
+
+  nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  nav a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  nav a:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.7);
+    transform: translateY(-2px);
+  }
+
+  /* === HERO === */
+  .hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tagline {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--brown);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    box-shadow: 3px 3px 0 var(--brown);
+  }
+
+  .hero h1 {
+    font-family: 'Kaisei Decol', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.35;
+    color: var(--navy);
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0 rgba(255,200,150,0.5);
+  }
+
+  .hero h1 .accent {
+    color: var(--coral);
+    display: inline-block;
+    animation: wiggle 2s ease-in-out infinite;
+  }
+
+  .hero p {
+    font-size: 1.05rem;
+    color: #6B5A4A;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.9;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: #fff;
+    border: 2px solid var(--navy);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--navy);
+    color: var(--navy);
+  }
+
+  /* === SECTION BASE === */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--forest);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .section-label::before, .section-label::after {
+    content: '✦';
+    font-size: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Kaisei Decol', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+
+  .section-desc {
+    color: #7A6A58;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    max-width: 520px;
+    margin-bottom: 48px;
+  }
+
+  /* === DIVIDER === */
+  .wavy-divider {
+    width: 100%;
+    height: 60px;
+    background: none;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  /* === STATS === */
+  .stats-strip {
+    background: var(--navy);
+    position: relative;
+    z-index: 1;
+  }
+  .stats-strip::before, .stats-strip::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 40px;
+  }
+  .stats-strip::before { top: -20px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 0); }
+  .stats-strip::after  { bottom: -20px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+
+  .stats-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+    color: #fff;
+  }
+  .stat-num {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--yellow);
+    display: block;
+  }
+  .stat-unit {
+    font-size: 1.2rem;
+    color: var(--peach);
+  }
+  .stat-label {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* === SERVICE CARDS === */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 36px 28px;
+    border: 2px solid transparent;
+    box-shadow: 6px 6px 0 #E8D8C0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+  }
+
+  .service-card:nth-child(1)::before { background: linear-gradient(90deg, var(--sky), var(--mint)); }
+  .service-card:nth-child(2)::before { background: linear-gradient(90deg, var(--peach), var(--yellow)); }
+  .service-card:nth-child(3)::before { background: linear-gradient(90deg, var(--lavender), var(--sky)); }
+  .service-card:nth-child(4)::before { background: linear-gradient(90deg, var(--mint), var(--yellow)); }
+  .service-card:nth-child(5)::before { background: linear-gradient(90deg, var(--yellow), var(--peach)); }
+  .service-card:nth-child(6)::before { background: linear-gradient(90deg, var(--sky), var(--lavender)); }
+
+  .service-card:hover {
+    transform: translateY(-8px) rotate(-0.5deg);
+    box-shadow: 10px 14px 0 #D4C0A0;
+    border-color: var(--navy);
+  }
+
+  .service-icon {
+    font-size: 2.8rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+  .service-card:nth-child(2) .service-icon { animation-delay: 0.5s; }
+  .service-card:nth-child(3) .service-icon { animation-delay: 1s; }
+  .service-card:nth-child(4) .service-icon { animation-delay: 1.5s; }
+
+  .service-dept {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--forest);
+    margin-bottom: 8px;
+  }
+
+  .service-name {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    color: #7A6A58;
+    line-height: 1.8;
+  }
+
+  .service-tag {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--cream);
+    border: 1.5px solid #D4C0A0;
+    border-radius: 12px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--brown);
+  }
+
+  /* === NEWS === */
+  .news-section {
+    background: #fff;
+    border-radius: 32px;
+    padding: 48px;
+    box-shadow: 8px 8px 0 #E8D8C0;
+    border: 2px solid #F0E4D0;
+  }
+
+  .news-list {
+    list-style: none;
+  }
+
+  .news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1.5px dashed #E8D8C0;
+    transition: all 0.2s;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { transform: translateX(8px); }
+
+  .news-date {
+    font-size: 0.8rem;
+    color: #B0A090;
+    min-width: 90px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .news-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 10px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .news-cat.life { background: var(--mint); color: var(--forest); }
+  .news-cat.food { background: var(--peach); color: #A05030; }
+  .news-cat.play { background: var(--sky); color: var(--navy); }
+  .news-cat.grow { background: var(--lavender); color: #5040A0; }
+
+  .news-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* === MISSION === */
+  .mission-box {
+    background: linear-gradient(135deg, var(--navy) 0%, #3D6B9E 100%);
+    border-radius: 32px;
+    padding: 64px 48px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-box::before {
+    content: '⭐';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.08;
+    top: -20px; left: -20px;
+  }
+  .mission-box::after {
+    content: '🌟';
+    position: absolute;
+    font-size: 6rem;
+    opacity: 0.08;
+    bottom: -10px; right: 20px;
+  }
+
+  .mission-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    opacity: 0.7;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .mission-text {
+    font-family: 'Kaisei Decol', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--yellow);
+  }
+
+  .mission-sub {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 2;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* === PROFILE === */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .header-inner { flex-direction: column; gap: 20px; }
+    nav { flex-wrap: wrap; justify-content: center; }
+  }
+
+  .profile-card {
+    background: #fff;
+    border-radius: 28px;
+    padding: 40px 36px;
+    box-shadow: 6px 6px 0 #E8D8C0;
+    border: 2px solid #F0E4D0;
+  }
+
+  .profile-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sky), var(--mint));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0 #C0D8E0;
+  }
+
+  .profile-role {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--forest);
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+
+  .profile-name {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .profile-kana {
+    font-size: 0.8rem;
+    color: #B0A090;
+    margin-bottom: 16px;
+  }
+
+  .profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .profile-table tr {
+    border-bottom: 1px dashed #E8D8C0;
+  }
+  .profile-table th {
+    text-align: left;
+    padding: 10px 0;
+    color: #B0A090;
+    font-weight: 700;
+    width: 100px;
+    font-size: 0.8rem;
+  }
+  .profile-table td {
+    padding: 10px 0;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .skill-tag {
+    background: var(--cream);
+    border: 1.5px solid #D4C0A0;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--brown);
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 48px 20px;
+    position: relative;
+    margin-top: 40px;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -30px; left: 0; right: 0;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 0);
+  }
+
+  .footer-logo {
+    font-family: 'Kaisei Decol', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-top: 16px;
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  /* === FADE IN === */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* scroll decoration */
+  .scroll-hint {
+    text-align: center;
+    padding: 0 0 20px;
+    font-size: 0.8rem;
+    color: #B0A090;
+    animation: float 2s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-icon">⭐</div>
+      <div class="logo-text">
+        <div class="company-sub">SWEET Co., Ltd.</div>
+        <div class="company-name">株式会社すうぃーと</div>
+        <div class="company-catch">あなたの心に、癒しの笑顔を</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#services">事業内容</a>
+      <a href="#news">お知らせ</a>
+      <a href="#profile">企業情報</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero fade-up">
+  <div class="hero-tagline">✨ あなたの心に、癒しの笑顔を ✨</div>
+  <h1>
+    元気いっぱい<br>
+    <span class="accent">すくすく成長中！</span>
+  </h1>
+  <p>
+    笑って・食べて・遊んで・学んで。<br>
+    ぱっつんマッシュヘアがトレードマークの<br>
+    2歳・左利きのCEOが世界を探検中。
+  </p>
+  <div class="hero-badges">
+    <span class="badge">🌱 現在 2歳</span>
+    <span class="badge">✋ 左利き</span>
+    <span class="badge">💇 ぱっつんマッシュ</span>
+    <span class="badge">😄 笑顔 製造業</span>
+  </div>
+</div>
+<div class="scroll-hint">↓ スクロールしてみてね</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item fade-up">
+      <span class="stat-num">365<span class="stat-unit">日</span></span>
+      <span class="stat-label">稼働日数（ほぼ毎日）</span>
+    </div>
+    <div class="stat-item fade-up">
+      <span class="stat-num">3<span class="stat-unit">食</span></span>
+      <span class="stat-label">1日の食事回数</span>
+    </div>
+    <div class="stat-item fade-up">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">笑顔の供給量</span>
+    </div>
+    <div class="stat-item fade-up">
+      <span class="stat-num">24<span class="stat-unit">h</span></span>
+      <span class="stat-label">保護者稼働時間</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">SERVICE</div>
+  <div class="section-title">主要事業内容</div>
+  <p class="section-desc">
+    当社が手がける事業は多岐にわたります。<br>
+    日々のパフォーマンスは常に向上中です。
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <span class="service-icon">🍽️</span>
+      <div class="service-dept">FOOD DIVISION</div>
+      <div class="service-name">食事・おやつ事業部</div>
+      <p class="service-desc">モリモリ食べる姿が当社の誇り。好き嫌いを克服しながら日々レパートリーを拡大中。おやつタイムは特に高パフォーマンスを発揮。</p>
+      <span class="service-tag">🥦 現在 挑戦中</span>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">🛝</span>
+      <div class="service-dept">PLAY DIVISION</div>
+      <div class="service-name">あそび・探索事業部</div>
+      <p class="service-desc">公園・室内・水たまりなど全方位で展開する主力事業。体力と創造力を存分に活用し、世界を全身で体感するプロジェクトを推進。</p>
+      <span class="service-tag">🏃 フル稼働中</span>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">😴</span>
+      <div class="service-dept">REST DIVISION</div>
+      <div class="service-name">ねんね・充電事業部</div>
+      <p class="service-desc">翌日の高パフォーマンスに向けた重要事業。添い寝サポートにより安定稼働を実現。当社の根幹を支える不可欠な事業部門。</p>
+      <span class="service-tag">💤 毎日実施</span>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">📚</span>
+      <div class="service-dept">LEARNING DIVISION</div>
+      <div class="service-name">まなび・発見事業部</div>
+      <p class="service-desc">絵本・積み木・お絵かきを通じた知的探求プロジェクト。「なんで？」「どうして？」という鋭い問いかけで周囲を圧倒している。</p>
+      <span class="service-tag">🔍 急成長中</span>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">🛁</span>
+      <div class="service-dept">DAILY DIVISION</div>
+      <div class="service-name">おふろ・日課事業部</div>
+      <p class="service-desc">お風呂・歯みがき・着替えなど日常業務を着実に推進。ときに強い抵抗を示すことがあるが、最終的には高品質なアウトプットを実現。</p>
+      <span class="service-tag">🚿 日々改善</span>
+    </div>
+
+    <div class="service-card fade-up">
+      <span class="service-icon">💬</span>
+      <div class="service-dept">COMMS DIVISION</div>
+      <div class="service-name">コミュニケーション事業部</div>
+      <p class="service-desc">語彙力・表現力ともに急速拡大中のホープ事業部。笑顔・泣き声・ぎゅっ、など多彩な手法で周囲との関係を強固に構築している。</p>
+      <span class="service-tag">❤️ 絶好調</span>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section>
+  <div class="mission-box fade-up">
+    <div class="mission-label">OUR MISSION</div>
+    <div class="mission-text">
+      「今日も元気に<br>大きくなること」
+    </div>
+    <p class="mission-sub">
+      笑顔を生み出し、家族に幸せを届ける。<br>
+      それが当社の変わらぬ使命であり、<br>
+      すべての事業活動の原点です。
+    </p>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-label">NEWS</div>
+  <div class="section-title">最新のお知らせ</div>
+
+  <div class="news-section fade-up">
+    <ul class="news-list">
+      <li class="news-item">
+        <span class="news-date">2025.06.01</span>
+        <span class="news-cat grow">成長</span>
+        <span class="news-title">新しい言葉を習得。語彙力が過去最高水準を更新しました。</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.05.28</span>
+        <span class="news-cat food">食事</span>
+        <span class="news-title">初めてのカレーライスを完食。食事事業部に新記録が誕生。</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.05.20</span>
+        <span class="news-cat play">あそび</span>
+        <span class="news-title">公園の大型遊具デビューを果たし、遊び事業部が新フィールドに進出。</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.05.12</span>
+        <span class="news-cat life">日常</span>
+        <span class="news-title">おふろでシャンプーを自力で成功。日課事業部に明るいニュース。</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.05.05</span>
+        <span class="news-cat grow">成長</span>
+        <span class="news-title">こどもの日特別レポート：笑顔指数が年間最高値を記録しました。</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="section-label">COMPANY PROFILE</div>
+  <div class="section-title">企業情報</div>
+
+  <div class="profile-grid">
+    <div class="profile-card fade-up">
+      <div class="profile-avatar">👶</div>
+      <div class="profile-role">代表取締役 CEO</div>
+      <div class="profile-name">○○ ○○</div>
+      <div class="profile-kana">まる まる</div>
+      <table class="profile-table">
+        <tr><th>年齢</th><td>2歳（絶賛成長中）</td></tr>
+        <tr><th>誕生日</th><td>2023年12月13日 🎂</td></tr>
+        <tr><th>利き手</th><td>左利き ✋（個性派CEO）</td></tr>
+        <tr><th>ヘアスタイル</th><td>ぱっつんマッシュ 💇</td></tr>
+        <tr><th>得意分野</th><td>笑顔・ぎゅっ・なきごえ</td></tr>
+        <tr><th>現在の課題</th><td>お野菜の苦手克服</td></tr>
+      </table>
+      <div class="skill-tags">
+        <span class="skill-tag">🌟 元気</span>
+        <span class="skill-tag">😊 笑顔</span>
+        <span class="skill-tag">✋ 左利き</span>
+        <span class="skill-tag">💇 マッシュヘア</span>
+        <span class="skill-tag">🎨 お絵かき</span>
+      </div>
+    </div>
+
+    <div class="profile-card fade-up">
+      <div class="profile-avatar">🏠</div>
+      <div class="profile-role">会社概要</div>
+      <div class="profile-name">株式会社すうぃーと</div>
+      <div class="profile-kana">SWEET Co., Ltd.</div>
+      <table class="profile-table">
+        <tr><th>創業</th><td>2023年12月13日（誕生日）</td></tr>
+        <tr><th>本社</th><td>自宅（リビング中心）</td></tr>
+        <tr><th>従業員数</th><td>1名（成長中）</td></tr>
+        <tr><th>支援企業</th><td>パパ・ママ・おじいちゃん・おばあちゃん</td></tr>
+        <tr><th>事業理念</th><td>毎日笑って元気に大きくなること</td></tr>
+        <tr><th>目標</th><td>世界一しあわせな子供になる</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⭐ 株式会社すうぃーと</div>
+  <p style="color:var(--yellow);font-size:0.9rem;margin:6px 0 12px;font-weight:700;">あなたの心に、癒しの笑顔を</p>
+  <p>身内限定・家族みんなで見守るホームページ</p>
+  <p class="footer-copy">© 2025 SWEET Co., Ltd. All Rights Reserved. (家族専用)</p>
+</footer>
+
+<script>
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (Array.from(fadeEls).indexOf(entry.target) % 4));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Initial visible
+  setTimeout(() => {
+    document.querySelectorAll('.hero, .hero ~ *').forEach(el => {
+      if (el.classList.contains('fade-up')) el.classList.add('visible');
+    });
+  }, 200);
+</script>
+
+</body>
+</html>
